@@ -60,3 +60,7 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+
+# Pass signing key material (never commit private keys)
+signing/
+Anycard/Resources/PassSigning.p12
