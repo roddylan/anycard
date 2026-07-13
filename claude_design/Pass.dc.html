@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<script src="./image-slot.js"></script>
+</helmet>
+<div style="position:relative;width:100%;aspect-ratio:320/442;border-radius:24px;overflow:hidden;color:{{ fg }};font-family:'Hanken Grotesk',sans-serif;box-shadow:0 18px 44px rgba(20,18,12,0.28);background:{{ bgCss }};">
+
+  <!-- background watermark icon -->
+  <sc-if value="{{ showIcon }}" hint-placeholder-val="{{ false }}">
+    <i class="ph-fill {{ icon }}" style="position:absolute;right:-30px;bottom:-30px;font-size:230px;opacity:0.09;line-height:1;"></i>
+  </sc-if>
+
+  <!-- =============== MINIMAL =============== -->
+  <sc-if value="{{ isMinimal }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;inset:0;padding:22px;display:flex;flex-direction:column;">
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="width:38px;height:38px;border-radius:11px;background:rgba(255,255,255,0.16);display:flex;align-items:center;justify-content:center;font-size:20px;"><i class="ph-bold {{ icon }}"></i></div>
+          <div style="font-family:'Newsreader',serif;font-size:20px;font-weight:500;">{{ org }}</div>
+        </div>
+        <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;opacity:0.7;">{{ tier }}</div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:center;">
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;opacity:0.62;">Member</div>
+        <div style="font-family:'Newsreader',serif;font-size:34px;font-weight:500;line-height:1.05;margin-top:4px;">{{ name }}</div>
+      </div>
+      <div style="background:#fff;border-radius:16px;padding:14px;display:flex;flex-direction:column;align-items:center;align-self:center;gap:9px;">
+        <div style="display:flex;">{{ glyph }}</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#141410;letter-spacing:0.1em;">{{ codeValue }}</div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- =============== MEMBERSHIP =============== -->
+  <sc-if value="{{ isMembership }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;inset:0;padding:22px;display:flex;flex-direction:column;">
+      <i class="ph-fill {{ icon }}" style="position:absolute;right:18px;top:74px;font-size:96px;opacity:0.9;line-height:1;transform:rotate(-12deg);"></i>
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;position:relative;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,0.16);display:flex;align-items:center;justify-content:center;font-size:19px;"><i class="ph-bold {{ icon }}"></i></div>
+          <div style="font-weight:700;font-size:18px;letter-spacing:-0.01em;">{{ org }}</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;opacity:0.65;font-weight:600;">Membership</div>
+          <div style="font-family:'Newsreader',serif;font-size:18px;font-weight:500;">{{ tier }}</div>
+        </div>
+      </div>
+      <div style="margin-top:26px;position:relative;">
+        <div style="font-size:10px;letter-spacing:0.14em;text-transform:uppercase;opacity:0.62;font-weight:600;">Member name</div>
+        <div style="font-size:27px;font-weight:600;line-height:1.05;margin-top:3px;">{{ name }}</div>
+      </div>
+      <div style="margin-top:18px;">
+        <div style="font-size:10px;letter-spacing:0.14em;text-transform:uppercase;opacity:0.62;font-weight:600;">Member ID</div>
+        <div style="font-size:18px;font-weight:500;margin-top:2px;font-family:'JetBrains Mono',monospace;">{{ memberId }}</div>
+      </div>
+      <div style="display:flex;gap:20px;margin-top:16px;">
+        <div>
+          <div style="font-size:9px;letter-spacing:0.12em;text-transform:uppercase;opacity:0.62;font-weight:600;">Since</div>
+          <div style="font-size:14px;margin-top:2px;font-family:'JetBrains Mono',monospace;">{{ since }}</div>
+        </div>
+        <div>
+          <div style="font-size:9px;letter-spacing:0.12em;text-transform:uppercase;opacity:0.62;font-weight:600;">Expires</div>
+          <div style="font-size:14px;margin-top:2px;font-family:'JetBrains Mono',monospace;">{{ expires }}</div>
+        </div>
+        <div>
+          <div style="font-size:9px;letter-spacing:0.12em;text-transform:uppercase;opacity:0.62;font-weight:600;">Guest pass</div>
+          <div style="font-size:14px;margin-top:2px;">{{ guestPass }}</div>
+        </div>
+      </div>
+      <div style="flex:1;"></div>
+      <div style="background:#fff;border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;align-items:center;align-self:center;gap:7px;">
+        <div style="display:flex;">{{ glyph }}</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#141410;letter-spacing:0.1em;">{{ codeValue }}</div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- =============== FEATURE (image) =============== -->
+  <sc-if value="{{ isFeature }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;inset:0;">
+      <image-slot id="{{ imgId }}" shape="rect" fit="cover" placeholder="Drop a background photo"></image-slot>
+    </div>
+    <div style="position:absolute;top:0;left:0;right:0;height:120px;background:linear-gradient(180deg,rgba(0,0,0,0.55),rgba(0,0,0,0));pointer-events:none;"></div>
+    <div style="position:absolute;bottom:0;left:0;right:0;height:190px;background:linear-gradient(0deg,rgba(0,0,0,0.72),rgba(0,0,0,0));pointer-events:none;"></div>
+    <div style="position:absolute;inset:0;padding:22px;display:flex;flex-direction:column;color:#fff;pointer-events:none;">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;">
+        <div style="font-family:'Newsreader',serif;font-size:24px;font-weight:500;letter-spacing:0.04em;text-shadow:0 1px 6px rgba(0,0,0,0.5);">{{ org }}</div>
+        <div style="text-align:right;text-shadow:0 1px 6px rgba(0,0,0,0.5);">
+          <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;opacity:0.85;font-weight:600;">Guest no.</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:600;">{{ guestNo }}</div>
+        </div>
+      </div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center;">
+        <div style="background:#fff;border-radius:16px;padding:16px;display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:auto;">
+          <div style="display:flex;">{{ glyph }}</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;text-shadow:0 1px 6px rgba(0,0,0,0.6);">
+        <div>
+          <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;opacity:0.8;font-weight:600;">Member name</div>
+          <div style="font-family:'Newsreader',serif;font-size:22px;font-weight:500;line-height:1.1;">{{ name }}</div>
+          <div style="font-size:12px;opacity:0.85;margin-top:6px;">{{ passType }}</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;opacity:0.8;font-weight:600;">Expires</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:600;">{{ expires }}</div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- =============== POSTER (photo top, code below) =============== -->
+  <sc-if value="{{ isPoster }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column;">
+      <div style="position:relative;flex:1;min-height:0;">
+        <image-slot id="{{ imgId }}" shape="rect" fit="cover" placeholder="Drop a photo"></image-slot>
+        <div style="position:absolute;top:0;left:0;right:0;height:78px;background:linear-gradient(180deg,rgba(0,0,0,0.5),rgba(0,0,0,0));pointer-events:none;"></div>
+        <div style="position:absolute;top:16px;left:18px;right:18px;display:flex;align-items:flex-start;justify-content:space-between;color:#fff;pointer-events:none;text-shadow:0 1px 6px rgba(0,0,0,0.55);">
+          <div style="font-family:'Newsreader',serif;font-size:21px;font-weight:500;letter-spacing:0.03em;">{{ org }}</div>
+          <div style="width:34px;height:34px;border-radius:10px;background:rgba(255,255,255,0.22);display:flex;align-items:center;justify-content:center;font-size:18px;"><i class="ph-bold {{ icon }}"></i></div>
+        </div>
+      </div>
+      <div style="padding:15px 18px 16px;display:flex;flex-direction:column;gap:12px;">
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;">
+          <div>
+            <div style="font-size:10px;letter-spacing:0.14em;text-transform:uppercase;opacity:0.62;font-weight:600;">Member</div>
+            <div style="font-family:'Newsreader',serif;font-size:23px;font-weight:500;line-height:1.05;margin-top:2px;">{{ name }}</div>
+            <div style="font-size:12px;opacity:0.8;margin-top:3px;">{{ passType }}</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;opacity:0.62;font-weight:600;">Expires</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:600;margin-top:2px;">{{ expires }}</div>
+          </div>
+        </div>
+        <div style="background:#fff;border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;align-items:center;align-self:center;gap:7px;">
+          <div style="display:flex;">{{ glyph }}</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#141410;letter-spacing:0.1em;">{{ codeValue }}</div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- =============== FULL PHOTO (poster variant, full-bleed) =============== -->
+  <sc-if value="{{ isPhoto }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;inset:0;">
+      <image-slot id="{{ imgId }}" shape="rect" fit="cover" placeholder="Drop a background photo"></image-slot>
+    </div>
+    <div style="position:absolute;top:0;left:0;right:0;height:120px;background:linear-gradient(180deg,rgba(0,0,0,0.5),rgba(0,0,0,0));pointer-events:none;"></div>
+    <div style="position:absolute;bottom:0;left:0;right:0;height:184px;background:linear-gradient(0deg,rgba(0,0,0,0.68),rgba(0,0,0,0));pointer-events:none;"></div>
+    <div style="position:absolute;inset:0;padding:22px;display:flex;flex-direction:column;color:#fff;pointer-events:none;">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;text-shadow:0 1px 6px rgba(0,0,0,0.55);">
+        <div style="font-family:'Newsreader',serif;font-size:24px;font-weight:500;letter-spacing:0.03em;">{{ org }}</div>
+        <div style="text-align:right;">
+          <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;opacity:0.85;font-weight:600;">Guest no.</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:600;">{{ guestNo }}</div>
+        </div>
+      </div>
+      <div style="margin-top:30px;display:flex;justify-content:center;">
+        <div style="background:#fff;border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:auto;box-shadow:0 8px 24px rgba(0,0,0,0.32);">
+          <div style="display:flex;">{{ glyph }}</div>
+        </div>
+      </div>
+      <div style="flex:1;"></div>
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;text-shadow:0 1px 6px rgba(0,0,0,0.6);">
+        <div>
+          <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;opacity:0.8;font-weight:600;">Member name</div>
+          <div style="font-family:'Newsreader',serif;font-size:22px;font-weight:500;line-height:1.1;">{{ name }}</div>
+          <div style="font-size:12px;opacity:0.85;margin-top:6px;">{{ passType }}</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;opacity:0.8;font-weight:600;">Expires</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:600;">{{ expires }}</div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:320,&quot;height&quot;:442},&quot;data&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;any&quot;}}">
+class Component extends DCLogic {
+  hashStr(str) { let h = 2166136261; for (let i = 0; i < str.length; i++) { h = Math.imul(h ^ str.charCodeAt(i), 16777619); } return h >>> 0; }
+  rng(seed) { let s = seed || 1; return () => { s = Math.imul(s ^ (s >>> 15), s | 1); s ^= s + Math.imul(s ^ (s >>> 7), s | 61); return ((s ^ (s >>> 14)) >>> 0) / 4294967296; }; }
+  gridEl(cells, n, px) { return React.createElement('div', { style: { width: px, height: px, display: 'grid', gridTemplateColumns: 'repeat(' + n + ',1fr)', gridTemplateRows: 'repeat(' + n + ',1fr)' } }, cells); }
+  qrNode(value, px, fg) {
+    const n = 21; const r = this.rng(this.hashStr('q' + value)); const g = [];
+    for (let i = 0; i < n; i++) { const row = []; for (let j = 0; j < n; j++) row.push(r() > 0.52); g.push(row); }
+    const clear = (oi, oj) => { for (let di = -1; di <= 7; di++) for (let dj = -1; dj <= 7; dj++) { const i = oi + di, j = oj + dj; if (i < 0 || j < 0 || i >= n || j >= n) continue; g[i][j] = false; } };
+    const put = (oi, oj) => { clear(oi, oj); for (let di = 0; di < 7; di++) for (let dj = 0; dj < 7; dj++) { const b = di === 0 || di === 6 || dj === 0 || dj === 6; const c = di >= 2 && di <= 4 && dj >= 2 && dj <= 4; g[oi + di][oj + dj] = b || c; } };
+    put(0, 0); put(0, n - 7); put(n - 7, 0);
+    const cells = []; for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) cells.push(React.createElement('div', { key: i * n + j, style: { background: g[i][j] ? fg : 'transparent' } }));
+    return this.gridEl(cells, n, px);
+  }
+  aztecNode(value, px, fg) {
+    const n = 15, c = 7; const r = this.rng(this.hashStr('a' + value)); const cells = [];
+    for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) { const d = Math.max(Math.abs(i - c), Math.abs(j - c)); const on = d <= 4 ? d % 2 === 0 : r() > 0.5; cells.push(React.createElement('div', { key: i * n + j, style: { background: on ? fg : 'transparent' } })); }
+    return this.gridEl(cells, n, px);
+  }
+  barcodeNode(value, w, h, fg) {
+    const r = this.rng(this.hashStr('b' + value)); const bars = []; let on = true;
+    for (let k = 0; k < 58; k++) { const wgt = 1 + Math.floor(r() * 3); bars.push(React.createElement('div', { key: k, style: { flexGrow: wgt, flexBasis: 0, background: on ? fg : 'transparent' } })); on = !on; }
+    return React.createElement('div', { style: { width: w, height: h, display: 'flex' } }, bars);
+  }
+  pdf417Node(value, w, h, fg) {
+    const rows = 6; const rowEls = []; const r = this.rng(this.hashStr('p' + value));
+    for (let ri = 0; ri < rows; ri++) { const bars = []; let on = true; for (let k = 0; k < 34; k++) { const wgt = 1 + Math.floor(r() * 3); bars.push(React.createElement('div', { key: k, style: { flexGrow: wgt, flexBasis: 0, background: on ? fg : 'transparent' } })); on = !on; } rowEls.push(React.createElement('div', { key: ri, style: { flex: 1, display: 'flex' } }, bars)); }
+    return React.createElement('div', { style: { width: w, height: h, display: 'flex', flexDirection: 'column' } }, rowEls);
+  }
+  glyph(d) {
+    const type = d.codeType || 'code128'; const fg = '#141410'; const val = d.codeValue || '000000';
+    if (type === 'image') { const sz = d.template === 'membership' ? 104 : 144; return React.createElement('image-slot', { id: (d.imgId || 'x') + '-code', shape: 'rounded', radius: 8, placeholder: 'Add code photo', style: { width: sz, height: sz, display: 'block' } }); }
+    if (type === 'qr') return this.qrNode(val, 148, fg);
+    if (type === 'aztec') return this.aztecNode(val, 148, fg);
+    if (type === 'pdf417') return this.pdf417Node(val, 248, 84, fg);
+    return this.barcodeNode(val, 248, 66, fg);
+  }
+  renderVals() {
+    const d = this.props.data || {};
+    const template = d.template || 'membership';
+    return {
+      ...d,
+      isMinimal: template === 'minimal',
+      isMembership: template === 'membership',
+      isFeature: template === 'feature',
+      isPoster: template === 'poster',
+      isPhoto: template === 'photo',
+      bgCss: d.bg || ((template === 'feature' || template === 'photo') ? '#14140F' : '#3E5145'),
+      fg: d.fg || '#F4F1EA',
+      showIcon: (template === 'minimal' || template === 'membership') && !!d.showIcon,
+      glyph: this.glyph(d),
+    };
+  }
+}
+</script>
+</body>
+</html>
